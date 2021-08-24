@@ -1,18 +1,13 @@
-<body>
-    <p class = flash><%= flash[:success] %></p>
+<h1>Book detail</h1>
+<div>
+  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
 
-    <p class = show>
-      <strong>Title:</strong>
-      <%= @book.title %>
-    </p>
+  <p>Title：<%= @book.title %></p>
+  <p>Opinion：<%= @book.body %></p>
+  
+  
+  <p><%= link_to "Edit", edit_book_path(@book) %></p>
+  <p><%= link_to "Destroy", book_path(), method: :delete, "data-confirm" => "本当に削除しますか？" %></p>
+  
 
-    <p class = show>
-      <strong>Body:</strong>
-      <%= @book.body %>
-    </p>
-</body>
-
-
-<%= link_to "Edit", edit_book_path(@book.id) %>
- |
-<%= link_to "Back", books_path %>
+</div>

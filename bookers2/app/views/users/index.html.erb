@@ -1,1 +1,19 @@
-<h1>index</h1>
+<h1>Users</h1>
+<% @users.each do |user| %>
+<div>
+  <p>image：<%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%></p>
+  
+  <p>name：<%= user.name %></p>
+<% end %>
+  <p>show>link</p>
+</div>
+
+
+
+
+
+<% @users.each do |user| %>
+<p>name：<%= user.name %></p>
+<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+<% end %>
+

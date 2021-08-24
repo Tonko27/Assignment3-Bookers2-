@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: 'homes#top'
-  
+
   get "about" => "top#about" , as: "about"
 
   devise_for :users, controllers: {
@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   confirmations: 'users/confirmations',
 }
 
-  resources :books
-  resources :users, only: [:edit, :update, :index, :show]
-  
+  resources :books, only: [:new, :create, :index, :show, :edit, :destroy]
+  resources :users, only: [:new, :create, :index, :show, :edit]
+
 
 end

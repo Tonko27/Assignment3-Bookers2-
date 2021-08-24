@@ -1,1 +1,21 @@
-<h1>show</h1>
+<h1>Books</h1>
+
+  
+  <% @books.each do |book| %>
+<div>
+  <p>Title：</p><p><%= link_to book.title, book_path(book.id) %></p>
+  <p>Opinion：<%= book.body %></p>
+  <p><%= link_to "Edit", edit_book_path(book.id) %></p>
+  <p><%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></p>
+</div>
+<% end %>
+
+  
+
+   
+
+  
+</div>
+
+
+
