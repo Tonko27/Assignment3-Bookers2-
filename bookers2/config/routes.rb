@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   confirmations: 'users/confirmations',
 }
 
-  resources :books, only: [:new, :create, :index, :show, :edit, :destroy]
-  resources :users, only: [:new, :create, :index, :show, :edit]
+  resources :books
+  resources :users, only: [:new, :create, :index, :show, :edit, :update]
 
 
 end
