@@ -1,11 +1,13 @@
 <h1>Editing Book</h1>
+<%= flash[:success] %>
+<%= flash[:danger] %>
 
-<%# if @book.errors.any? %>
-  <%#= @book.errors.count %>件のエラーが発生しました
-  <%# @book.errors.full_messages.each do |message| %>
-    <%#= message %>
-  <%# end %>
-<%# end %>
+<% if @book.errors.any? %>
+  <p><%= @book.errors.count %>件のエラーが発生しました</p>
+  <% @book.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
 
 <div>
   <%= form_with model:@book, url:book_path, local: true do |f| %>
