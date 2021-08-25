@@ -9,23 +9,19 @@
   <p>Title：<%= @book.title %></p>
   <p>Opinion：<%= @book.body %></p>
 
-
+  <% if @user.id == current_user.id %>
   <p><%= link_to "Edit", edit_book_path(@book) %></p>
   <p><%= link_to "Destroy", book_path(), method: :delete, "data-confirm" => "本当に削除しますか？" %></p>
-</div>
+  <% end %>
+  </div>
 
 <%= flash[:success] %>
 <%= flash[:danger] %>
 <h1>User info</h1>
 <div class="profile-container">
-  <!-- image -->
   <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-  <!-- name -->
   <p class = "profile-name">name:<%= @user.name %></p>
-  <!-- introduction -->
   <p class = "profile-introduction">introduction:<%= @user.introduction %></p>
-
-  <!-- link>>users/edit -->
    <% if @book.user.id == current_user.id %>
     <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
   <% end %>
