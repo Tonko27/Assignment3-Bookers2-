@@ -1,23 +1,28 @@
-<h1>User info</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h1>User info</h1>
+        <%= flash[:success] %>
+        <%= flash[:danger] %>
 
-<%= flash[:success] %>
-<%= flash[:danger] %>
+      <% if @user.errors.any? %>
+      <p><%= @user.errors.count %>件のエラーが発生しました</p>
+      <% @user.errors.full_messages.each do |message| %>
+      <%= message %>
+      <% end %>
+    <% end %>
 
-<% if @user.errors.any? %>
-  <p><%= @user.errors.count %>件のエラーが発生しました</p>
-  <% @user.errors.full_messages.each do |message| %>
-    <%= message %>
-  <% end %>
-<% end %>
+      <%= form_with model:@user, local:true do |f| %>
+        <br><label for="inputName">Name</label></br>
+          <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"Name"%>
+        <br><label for="inputImage">ProfileImage</label></br>
+          <%= f.attachment_field :profile_image, placeholder: "profile_image" %>
+        <br><label for="inputIntroduction">Introduction</label></br>
+          <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction", placeholder:"Introduction"%>
 
-<%= form_with model:@user, local:true do |f| %>
-  <label for="inputName">Name</label>
-   <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"Name"%>
-  <label for="inputImage">ProfileImage</label>
-  <%= f.attachment_field :profile_image, placeholder: "profile_image" %>
-  <label for="inputIntroduction">Introduction</label>
-   <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction", placeholder:"Introduction"%>
-
-  <%= f.submit "Update User" %>
-<% end %>
+      <%= f.submit "Update User" %>
+    <% end %>
+    </div>
+  </div>
+</div>
 

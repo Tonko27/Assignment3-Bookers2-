@@ -1,43 +1,31 @@
-<h1>Books</h1>
-
-
-<% @books.each do |book| %>
-<div>
-  <%= link_to user_path(book.user.id) do %>
-  <%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-  <% end %>
-  <p>Title：<%= link_to book.title, book_path(book.id) %></p>
-  <p>Opinion：<%= book.body %></p>
-
-  
-</div>
-<% end %>
-
-
-
-
-
-
-<%= flash[:success] %>
-<%= flash[:danger] %>
-<h1>User info</h1>
-<div class="profile-container">
-  <!-- image -->
-  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-  <!-- name -->
-  <p class = "profile-name">name:<%= current_user.name %></p>
-  <!-- introduction -->
-  <p class = "profile-introduction">introduction:<%= current_user.introduction %></p>
-
-  <!-- link>>users/edit -->
-   <%# if @user.id == current_user.id %>
-    <p><%= link_to "プロフィール編集", edit_user_path(current_user) %></p>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+    <%= flash[:success] %>
+    <%= flash[:danger] %>
+    <h2>User info</h2>
+    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>name</th>
+            <td><%= current_user.name %></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>introduction</th>
+            <td><%= current_user.introduction %></td>
+          </tr>
+        </tbody>
+      </table>
+    <div class="row">
+  <%# if @user.id == current_user.id %>
+    <button type="button" class="btn btn-outline-secondary btn-block fas fa-user-cog">   
+    <%= link_to "プロフィール編集", edit_user_path(current_user) %>
+    </button>
   <%# end %>
-</div>
-
-
-
-
+  </div>
 
 <% if @new_book.errors.any? %>
   <p><%= @new_book.errors.count %>件のエラーが発生しました</p>
@@ -46,16 +34,59 @@
   <% end %>
 <% end %>
 
-<h1>New book</h1>
-<div>
+<h2>New book</h2>
+<div class="form">
   <%= form_with model:@new_book, local:true do |f| %>
-  <label for="inputTitle">title</label>
+  <br><label for="inputTitle">title</label></br>
    <%= f.text_field :title %>
-  <label for="inputBody">Opinion</label>
+  <br><label for="inputBody">Opinion</label></br>
    <%= f.text_area :body %>
 
   <%= f.submit "Create Book" %>
   <% end %>
 </div>
+</div>
+
+
+<div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+
+
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @books.each do |book| %>
+          <tr>
+          <th>
+          <%= link_to user_path(book.user.id) do %>
+          <%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+          <% end %>
+          </th>
+          <th><%= link_to book.title, book_path(book.id) %></th>
+          <th><%= book.body %></th>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+</div>
+ 
+
+</div>
+
+
+
+
+
 
 

@@ -18,10 +18,10 @@ class UsersController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = @current_user.id
     if @book.save
-      flash.now[:success] =  'Successfully'
+      flash.now[:success] =  'successfully'
     redirect_to book_path(@book.id)
     else
-      flash.now[:danger] = 'Error'
+      flash.now[:danger] = 'error'
     render 'books/index'
     end
   end
@@ -31,17 +31,17 @@ class UsersController < ApplicationController
     if @user == current_user
     render "edit"
     else
-    redirect_to books_path
+    redirect_to user_path(@current_user.id)
     end
   end
 
   def update
     @user = User.find(current_user.id)
     if @user.update(user_params)
-      flash.now[:success] =  'Successfully'
+      flash[:success] =  'successfully'
     redirect_to user_path(@user.id)
     else
-    flash.now[:danger] = 'Error'
+    flash.now[:danger] = 'error'
     render 'users/edit'
     end
   end
